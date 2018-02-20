@@ -5,6 +5,9 @@ menu of game options with session history
 -connect 4
 -...
 '''
+import Yohaku
+import GuessMyNumber
+import Hangman
 
 def print_main_menu(main_menu_dict):
     print('************************************************')
@@ -22,8 +25,7 @@ def session_history(game_history):
         clear_history(game_history)
 
 
-main_menu_dict = {'1':'Hangman', '2':'Guess My Number', '3':'TicTacToe', 'H':'Session History', 'Q':'Quit'}
-menu_to_method_dict = {'1':'game = Hangman()', '2':'game = GuessMyNumber()', '3':'game = TicTacToe()', 'H':'Session History', 'Q':'Quit'}
+main_menu_dict = {'1':'Hangman', '2':'Guess My Number', '3':'Yohaku','H':'Session History', 'Q':'Quit'}
 game_history = []
 while (True):
     user_input = ''
@@ -35,6 +37,11 @@ while (True):
     if user_input.strip() == 'H':
         session_history(game_history)
         continue
-    exec(menu_to_method_dict[user_input.strip()])
+    if user_input.strip() == '1':
+        game = Hangman.Hangman()
+    elif user_input.strip() == '2':
+        game = GuessMyNumber.GuessMyNumber()
+    elif user_input.strip() == '3':
+        game = Yohaku.Yohaku()
     game.run_game()
     game_history.append(game)
